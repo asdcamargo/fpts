@@ -14,7 +14,7 @@ Knowing that the test task is one of the main challenges in a Microservices appl
               
 *API : Provide means to allow developers to define methods that will return test specifications 
  for the service operations. 
- *CORE: Work on runtime to process request and return the specification.
+ *CORE: Work on runtime to process income requests and return the test specification.
 
 ## Main Features
 
