@@ -9,6 +9,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.module.jsonSchema.factories.SchemaFactoryWrapper;
 
+/**
+ * This is a util class that provide JSON operations such as get JSON String for
+ * a particular object or get the JSON Schema for a class.<br>
+ *
+ * @author andre
+ *
+ */
 public class JSONConverter {
 
 	static ObjectMapper mapper = new ObjectMapper();

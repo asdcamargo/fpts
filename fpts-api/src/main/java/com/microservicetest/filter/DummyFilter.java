@@ -9,6 +9,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+/**
+ * This class is a dummy filter to be used in runtime time at the occasion where
+ * the core library is not found. <br>
+ * This Filter won't be performing any operation besides the forward of the
+ * requests.
+ *
+ * @author andre
+ *
+ */
 public class DummyFilter implements Filter {
 
 	public void init(FilterConfig filterConfig) throws ServletException {

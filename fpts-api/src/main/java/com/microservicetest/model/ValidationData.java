@@ -4,6 +4,15 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class contain attributes to be used by the test application to validate
+ * the response for a test request. <br>
+ * The validation data can include response header parameters and the response
+ * body.
+ *
+ * @author andre
+ *
+ */
 public class ValidationData {
 
 	private Map<String, String> headerValidation;

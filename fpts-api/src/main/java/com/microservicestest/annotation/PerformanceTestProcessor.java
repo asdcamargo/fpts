@@ -15,6 +15,18 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic;
 
+import com.microservicetest.model.TestSpec;
+
+/**
+ * This is the class that will validate the methods annotated with the
+ * {@link PerformanceTest}. <br>
+ * The methods with this annotation need to have a return type of
+ * {@link TestSpec} with a generic type set up.
+ *
+ *
+ * @author andre
+ *
+ */
 public class PerformanceTestProcessor extends AbstractProcessor {
 
 	private static final String CLASS_REGEX = "(TestSpec)(<.+>)";
