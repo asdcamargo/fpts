@@ -28,6 +28,19 @@ import com.microservicetest.model.TestSpec;
 import com.microservicetest.util.HttpMethodEnum;
 import com.microservicetest.util.JSONConverter;
 
+/**
+ * This is the main class that will be called to filter all requests send to the
+ * services.<br>
+ * This class will analyze the request method, case its an OPTIONS the test
+ * specification ({@link TestSpec}) will be obtained from the service and send
+ * as a response. <br>
+ * To obtain the test specification this class will look for the method annoted
+ * with {@link PerformanceTest} that contains the requested URI (e.g. /rest/crl)
+ * in the service class.
+ *
+ * @author andre
+ *
+ */
 @WebFilter(urlPatterns = "/*")
 public class PerformanceTestFilter implements Filter {
 

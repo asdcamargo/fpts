@@ -10,6 +10,25 @@ import com.microservicetest.model.ValidationData;
 import com.microservicetest.util.HttpMethodEnum;
 import com.microservicetest.util.SpecResponseFields;
 
+/**
+ * This class models the response for the OPTIONS request.<br>
+ * All the fields that need to be present on the response are mapped in this
+ * class and the response is wrapped in a JSON object. <br>
+ * {@link SpecResponseFields#DESCRIPTION} - Contains a human readable
+ * description for the service operation which the test specification is
+ * designed to test <br>
+ * {@link SpecResponseFields#PARAMETER} - Contains the data that will be used as
+ * the parameter for the test, can be JSON objects or get parameters for GET
+ * requests <br>
+ * {@link SpecResponseFields#PARAMETER_SCHEMA} - The JSON-Schema for the
+ * parameter <br>
+ * {@link SpecResponseFields#VALIDATION} - Validation data to be used to
+ * validate the response from the server after the request using the test
+ * parameter
+ *
+ * @author andre
+ *
+ */
 public class TestHttpMethodSpec {
 
 	static ObjectMapper mapper = new ObjectMapper();
