@@ -56,7 +56,7 @@ The framework will only perform its action if the core library is found in the b
  * **Third step** The final step if to add the framework filter in your application configuration. If you choose to place the configuration on code you will add the following code to your Configuration class.
 
 ```
-  @Bean
+  	@Bean
 	@Autowired
 	public FilterRegistrationBean performanceTestFilter(RequestMappingHandlerMapping requestMappingHandler) {
 		FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
