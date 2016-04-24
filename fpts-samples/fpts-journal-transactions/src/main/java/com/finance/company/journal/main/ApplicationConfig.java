@@ -21,7 +21,7 @@ import com.microservicetest.filter.FilterBuilder;
 @Configuration
 @EnableMongoRepositories(basePackages = "com.finance.company.journal.repository")
 @ComponentScan(basePackages = "com.finance.company.journal.service")
-class ApplicationConfig {
+public class ApplicationConfig {
 
 	@Bean
 	public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {

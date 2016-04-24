@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,11 +36,15 @@ public class JournalService extends RESTService {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/transactions/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public FinancialTransaction find(@PathVariable String id) throws IOException {
+	public ResponseEntity<FinancialTransaction> find(@PathVariable String id) throws IOException {
 		logger.info("Searching JournalHeader by id: " + id);
 		FinancialTransaction journalHeader = this.journalRepository.findOne(id);
+		if (journalHeader == null) {
+			logger.info("Journal not found ");
+			return new ResponseEntity<FinancialTransaction>(HttpStatus.BAD_REQUEST);
+		}
 		logger.info("Returning JournalHeader: " + journalHeader);
-		return journalHeader;
+		return new ResponseEntity<FinancialTransaction>(journalHeader, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/transactions")
@@ -59,9 +64,9 @@ public class JournalService extends RESTService {
 		return newJournalHeader;
 	}
 
-	@RequestMapping(value = "/transactions", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/transactions/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public void delete(@RequestParam String id) {
+	public void delete(@PathVariable String id) {
 		logger.info("Removing JournalHeader with id: " + id);
 		this.journalRepository.delete(id);
 	}
