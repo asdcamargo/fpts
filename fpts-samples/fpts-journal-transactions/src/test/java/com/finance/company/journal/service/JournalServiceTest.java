@@ -81,8 +81,8 @@ public class JournalServiceTest {
 
 		String urlWithId = uri.toString() + "/" + returned.getBody().getId();
 		template.delete(urlWithId);
-		// Try to get with the id, need to return bad request because the entity
-		// is not there anymore
+		// Try to get with the id, need to return resource not found (404)
+		// because the entity is not there anymore
 		HttpStatus statusCode = template.getForEntity(urlWithId, String.class).getStatusCode();
 
 		assertTrue(statusCode.is4xxClientError());

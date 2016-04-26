@@ -41,7 +41,7 @@ public class JournalService extends RESTService {
 		FinancialTransaction journalHeader = this.journalRepository.findOne(id);
 		if (journalHeader == null) {
 			logger.info("Journal not found ");
-			return new ResponseEntity<FinancialTransaction>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<FinancialTransaction>(HttpStatus.NOT_FOUND);
 		}
 		logger.info("Returning JournalHeader: " + journalHeader);
 		return new ResponseEntity<FinancialTransaction>(journalHeader, HttpStatus.OK);
