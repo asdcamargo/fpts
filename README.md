@@ -1,8 +1,8 @@
 # FPTS - Framework for Performance Test Specification for Microservices
 
-This framework was build to improve the performance test execution for applications build under Microservices architecture.
+This framework was build to improve the performance test execution on applications build under Microservices architecture.
 
-Knowing that the test task is one of the main challenges in a Microservices application, the main goal is to provide a manner to automate the performance tests on each Microservice. For that, the developers need to define a test specification for each operation of the service. The specification will then be used by an external application to run performance tests in an automated way.
+Knowing that the test task is one of the main challenges in a Microservices application, the main goal is to provide a manner to automate the performance tests on each Microservice. For that, the developer need to define a test specification for each operation of the service. The specification will then be used by an external application to run performance tests in an automated way.
 
 ## Application
 
