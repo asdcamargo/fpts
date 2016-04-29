@@ -8,5 +8,7 @@
   	<module>fpts-api</module>
   	<module>fpts-core</module>
   	<module>fpts-samples</module>
+  	<module>fpts-runner</module>
+  	<module>fpts-web</module>
   </modules>
 </project>
