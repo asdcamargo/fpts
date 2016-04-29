@@ -7,5 +7,5 @@
   </parent>
   <artifactId>fpts-runner</artifactId>
   <name>FPTS Test Runner</name>
-  <description>This module is responsible for running performance test using Apache JMeter library</description>
+  <description>This module is responsible for running performance tests using Apache JMeter library</description>
 </project>
