@@ -62,7 +62,7 @@ public class PerformanceTestFilter implements Filter {
 				HandlerMethod handler = this.requestMappingHandler.getHandlerMethods().get(info);
 				List<Method> methodsWithTestAnnotation = getMethodsAnnotatedWith(handler.getBeanType(),
 						PerformanceTest.class);
-				TestHttpMethodSpec spec = null;
+				TestSpecification spec = null;
 				for (Method method : methodsWithTestAnnotation) {
 					PerformanceTest perfAnnotation = method.getAnnotation(PerformanceTest.class);
 					HttpMethodEnum httpMethod = perfAnnotation.httpMethod();
@@ -76,11 +76,11 @@ public class PerformanceTestFilter implements Filter {
 							String jsonSchema = JSONConverter
 									.getJsonSchema(parametersForTest.getTestParameter().getClass());
 							if (spec != null) {
-								TestHttpMethodSpec.joinSpec(spec, httpMethod, description,
+								TestSpecification.joinSpec(spec, httpMethod, description,
 										parametersForTest.getTestParameter(), parametersForTest.getValidationData(),
 										jsonSchema);
 							} else {
-								spec = TestHttpMethodSpec.build(httpMethod, description,
+								spec = TestSpecification.build(httpMethod, description,
 										parametersForTest.getTestParameter(), parametersForTest.getValidationData(),
 										jsonSchema);
 							}
