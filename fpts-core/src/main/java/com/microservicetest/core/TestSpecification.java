@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.microservicestest.model.validation.core.TestValidations;
+import com.microservicestest.model.validation.core.TestValidationsBuilder;
 import com.microservicetest.util.HttpMethodEnum;
 import com.microservicetest.util.ResourceController;
 import com.microservicetest.util.ResourceType;
@@ -42,7 +42,7 @@ public class TestSpecification {
 	private ObjectNode spec = new ObjectNode(mapper.getNodeFactory());
 
 	protected TestSpecification(HttpMethodEnum httpMethod, String description, Serializable parameter,
-			TestValidations validation, String jsonSchema) {
+			TestValidationsBuilder validation, String jsonSchema) {
 		ObjectNode methodObj = this.spec.putObject(httpMethod.toString());
 
 		methodObj.put(SpecResponseFields.DESCRIPTION.getFieldName(), description);
@@ -56,7 +56,7 @@ public class TestSpecification {
 	}
 
 	public static TestSpecification build(HttpMethodEnum httpMethod, String description, Serializable parameter,
-			TestValidations validation, String jsonSchema) {
+			TestValidationsBuilder validation, String jsonSchema) {
 		return new TestSpecification(httpMethod, description, parameter, validation, jsonSchema);
 	}
 
@@ -78,7 +78,7 @@ public class TestSpecification {
 	 * @return The result specification with the new one added
 	 */
 	public static TestSpecification joinSpec(TestSpecification spec, HttpMethodEnum httpMethod, String description,
-			Serializable parameter, TestValidations validation, String jsonSchema) {
+			Serializable parameter, TestValidationsBuilder validation, String jsonSchema) {
 		ObjectNode methodObj = spec.getSpec().putObject(httpMethod.toString());
 
 		methodObj.put(SpecResponseFields.DESCRIPTION.getFieldName(), description);

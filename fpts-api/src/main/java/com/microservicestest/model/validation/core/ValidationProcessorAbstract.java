@@ -26,4 +26,8 @@ public abstract class ValidationProcessorAbstract implements IKeyValueValidation
 		valuesMap.put(field, data);
 	}
 
+	public void setContentMap(Map<String, String> valuesMap) {
+		this.valuesMap.putAll(valuesMap);
+	}
+
 }
