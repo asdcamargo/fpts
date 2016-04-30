@@ -18,7 +18,7 @@ import com.fasterxml.jackson.module.jsonSchema.factories.SchemaFactoryWrapper;
  */
 public class JSONConverter {
 
-	static ObjectMapper mapper = new ObjectMapper();
+	static ObjectMapper mapper = ResourceController.getResource(ResourceType.OBJECT_MAPPER);
 
 	static {
 

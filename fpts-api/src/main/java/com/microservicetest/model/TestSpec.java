@@ -3,6 +3,7 @@ package com.microservicetest.model;
 import java.io.Serializable;
 
 import com.microservicestest.annotation.PerformanceTest;
+import com.microservicestest.model.validation.core.TestValidations;
 
 /**
  * This is the main class that will be returned in a method annotated with
@@ -24,9 +25,9 @@ public class TestSpec<T extends Serializable> {
 
 	private Serializable testParameter;
 
-	private ValidationData validationData;
+	private TestValidations validationData;
 
-	public TestSpec(Serializable testParameter, ValidationData validationData) {
+	public TestSpec(Serializable testParameter, TestValidations validationData) {
 		super();
 		this.testParameter = testParameter;
 		this.validationData = validationData;
@@ -36,7 +37,7 @@ public class TestSpec<T extends Serializable> {
 		return this.testParameter;
 	}
 
-	public ValidationData getValidationData() {
+	public TestValidations getValidationData() {
 		return this.validationData;
 	}
 
