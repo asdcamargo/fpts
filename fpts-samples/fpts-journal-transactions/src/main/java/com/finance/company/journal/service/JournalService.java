@@ -21,9 +21,9 @@ import com.finance.company.journal.bean.AccountDetails;
 import com.finance.company.journal.bean.FinancialTransaction;
 import com.finance.company.journal.repository.IJournalRepository;
 import com.microservicestest.annotation.PerformanceTest;
+import com.microservicestest.model.validation.core.TestValidationsBuilder;
 import com.microservicetest.model.GetTestParameter;
 import com.microservicetest.model.TestSpec;
-import com.microservicetest.model.ValidationData;
 import com.microservicetest.util.HttpMethodEnum;
 
 @RestController
@@ -72,21 +72,23 @@ public class JournalService extends RESTService {
 	}
 
 	@PerformanceTest(path = "/rest/finance/transactions", httpMethod = HttpMethodEnum.POST, description = "Save a new financial transaction")
-	public TestSpec<FinancialTransaction> getTestSpecForSave() {
+	public TestSpec<FinancialTransaction> getTestSpecForSave() throws IOException {
 		FinancialTransaction testObj = new FinancialTransaction("000023989", "766", "10", "2015");
 		AccountDetails accDetails = AccountDetails.build("0083289", 1000d, 1000d);
 		testObj.setAccountLines(Arrays.asList(accDetails));
+		TestValidationsBuilder validationBuilder = new TestValidationsBuilder();
 		TestSpec<FinancialTransaction> testSpec = new TestSpec<FinancialTransaction>(testObj,
-				ValidationData.buildWithHeaderStatus200());
+				validationBuilder.buildHeaderStatus200AndEntityBody(testObj));
 		return testSpec;
 	}
 
 	@PerformanceTest(path = "/rest/finance/transactions", httpMethod = HttpMethodEnum.GET, description = "Get transaction by id")
-	public TestSpec<GetTestParameter> getTestSpecForGetById() {
+	public TestSpec<GetTestParameter> getTestSpecForGetById() throws IOException {
 		GetTestParameter testParameter = new GetTestParameter("id", "1");
+		TestValidationsBuilder validationBuilder = new TestValidationsBuilder();
 		FinancialTransaction testObj = new FinancialTransaction("000023989", "766", "10", "2015");
 		TestSpec<GetTestParameter> testSpec = new TestSpec<GetTestParameter>(testParameter,
-				ValidationData.buildWithBodyAndHeader200(testObj));
+				validationBuilder.buildHeaderStatus200AndEntityBody(testObj));
 		return testSpec;
 	}
 
