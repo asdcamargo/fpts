@@ -18,7 +18,7 @@ public abstract class ValidationProcessorAbstract implements IKeyValueValidation
 
 	public String getJSONForValidation() throws JsonProcessingException {
 		ObjectMapper mapper = ResourceController.getResource(ResourceType.OBJECT_MAPPER);
-		return mapper.writeValueAsString(this);
+		return mapper.writeValueAsString(valuesMap);
 	}
 
 	@Override

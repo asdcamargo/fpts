@@ -14,9 +14,9 @@ public class ValidationProcessorFactory {
 	public static IKeyValueValidationProcessor getProcessorForType(ValidationType type) {
 		switch (type) {
 		case HEADER:
-			return new BodyValidationProcessor();
-		case BODY:
 			return new HeaderValidationProcessor();
+		case BODY:
+			return new BodyValidationProcessor();
 		default:
 			return new BodyValidationProcessor();
 		}

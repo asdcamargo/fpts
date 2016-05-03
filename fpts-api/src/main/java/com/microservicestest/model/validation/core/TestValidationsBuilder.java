@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -26,7 +25,7 @@ public class TestValidationsBuilder {
 	public TestValidationsBuilder() {
 	}
 
-	public void addValidation(ValidationProcessorAbstract validation) throws JsonProcessingException {
+	public void addValidation(ValidationProcessorAbstract validation) throws IOException {
 		// Add to validations list
 		if (!validations.containsKey(validation.getValidationType())) {
 			validations.put(validation.getValidationType(), new ArrayList<ValidationProcessorAbstract>());
@@ -56,11 +55,22 @@ public class TestValidationsBuilder {
 		return this;
 	}
 
-	private void appendJSON(ValidationProcessorAbstract validation) throws JsonProcessingException {
+	public TestValidationsBuilder addHeaderParameter(HttpHeaderFields field, String value) throws IOException {
+		// Validation for header 200
+		HeaderValidationProcessor headerValidation = (HeaderValidationProcessor) ValidationProcessorFactory
+				.getProcessorForType(ValidationType.HEADER);
+		headerValidation.putContent(field.toString(), value);
+		this.addValidation(headerValidation);
+
+		return this;
+	}
+
+	private void appendJSON(ValidationProcessorAbstract validation) throws IOException {
 		if (validationJson.get(validation.getValidationType().toString()) == null) {
-			validationJson.putObject(validation.getValidationType().toString());
+			validationJson.put(validation.getValidationType().toString(), validation.getJSONForValidation());
+		} else {
+			validationJson.arrayNode().add(validation.getJSONForValidation());
 		}
-		validationJson.putObject(validation.getJSONForValidation());
 	}
 
 	public String getJSONRepresentation() {

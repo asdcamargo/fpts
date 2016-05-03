@@ -19,6 +19,7 @@ public class ResourceController {
 	static {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setSerializationInclusion(Include.NON_NULL);
+		putResource(ResourceType.OBJECT_MAPPER, mapper);
 	}
 
 	public static <E> E getResource(ResourceType resource) {
