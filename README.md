@@ -6,6 +6,8 @@ Knowing that the test task is one of the main challenges in a Microservices appl
 
 ## Application
 
+* **JDK:** This project requires JDK 8
+
 * **Web Framework:** [Spring Web MVC](https://github.com/spring-projects/spring-framework.git) v4.1.6
 
 * **JSON library:** [Jackson](https://github.com/FasterXML/jackson.git) v2.5.4 
@@ -46,9 +48,10 @@ The framework will only perform its action if the core library is found in the b
   @PerformanceTest(path = "/rest/finance", httpMethod = HttpMethodEnum.GET, description = "Get transaction by id")
 	public TestSpec<GetTestParameter> getTestSpecForGetById() {
 		GetTestParameter testParameter = new GetTestParameter("id", "1");
+		TestValidationsBuilder validationBuilder = new TestValidationsBuilder();
 		FinancialTransaction testObj = new FinancialTransaction("000023989", "766", "10", "2015");
 		TestSpec<GetTestParameter> testSpec = new TestSpec<GetTestParameter>(testParameter,
-				ValidationData.buildWithBodyAndHeader200(testObj));
+				validationBuilder.buildHeaderStatus200AndEntityBody(testObj));
 		return testSpec;
 	}
 ```
