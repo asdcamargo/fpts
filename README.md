@@ -48,9 +48,10 @@ The framework will only perform its action if the core library is found in the b
   @PerformanceTest(path = "/rest/finance", httpMethod = HttpMethodEnum.GET, description = "Get transaction by id")
 	public TestSpec<GetTestParameter> getTestSpecForGetById() {
 		GetTestParameter testParameter = new GetTestParameter("id", "1");
+		TestValidationsBuilder validationBuilder = new TestValidationsBuilder();
 		FinancialTransaction testObj = new FinancialTransaction("000023989", "766", "10", "2015");
 		TestSpec<GetTestParameter> testSpec = new TestSpec<GetTestParameter>(testParameter,
-				ValidationData.buildWithBodyAndHeader200(testObj));
+				validationBuilder.buildHeaderStatus200AndEntityBody(testObj));
 		return testSpec;
 	}
 ```
