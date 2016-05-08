@@ -10,6 +10,7 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.microservicetest.util.HttpHeaderFields;
 import com.microservicetest.util.ResourceController;
@@ -59,7 +60,7 @@ public class TestValidationsBuilder {
 		// Validation for header 200
 		HeaderValidationProcessor headerValidation = (HeaderValidationProcessor) ValidationProcessorFactory
 				.getProcessorForType(ValidationType.HEADER);
-		headerValidation.putContent(field.toString(), value);
+		headerValidation.putContent(field.getField(), value);
 		this.addValidation(headerValidation);
 
 		return this;
@@ -67,9 +68,11 @@ public class TestValidationsBuilder {
 
 	private void appendJSON(ValidationProcessorAbstract validation) throws IOException {
 		if (validationJson.get(validation.getValidationType().toString()) == null) {
-			validationJson.put(validation.getValidationType().toString(), validation.getJSONForValidation());
+			validationJson.putArray(validation.getValidationType().toString()).add(validation.getJSONForValidation());
 		} else {
-			validationJson.arrayNode().add(validation.getJSONForValidation());
+
+			((ArrayNode) validationJson.get(validation.getValidationType().toString()))
+					.add(validation.getJSONForValidation());
 		}
 	}
 

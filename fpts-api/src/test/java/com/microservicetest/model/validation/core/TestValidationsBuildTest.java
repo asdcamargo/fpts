@@ -1,5 +1,8 @@
 package com.microservicetest.model.validation.core;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.io.Serializable;
 
 import org.junit.Test;
@@ -10,9 +13,10 @@ import com.microservicetest.util.HttpHeaderFields;
 public class TestValidationsBuildTest {
 
 	static String jsonEntity = "{\"BODY\":\"{\\\"field1\\\":\\\"field1\\\",\\\"field\\\":true,\\\"field2\\\":\\\"field2\\\"}\"}";
-	static String jsonHeader200WithBody = "{\"HEADER\":\"{\\\"Status\\\":\\\"200\\\"}\","
+	static String jsonHeader200WithBody = "{\"HEADER\":[\"{\\\"Status\\\":\\\"200\\\"}]\","
 			+ "\"BODY\":\"{\\\"field1\\\":\\\"field1\\\",\\\"field\\\":true,\\\"field2\\\":\\\"field2\\\"}\"}";
 	EntityForTest testEntity = new EntityForTest("field1", "field2", true);
+	static String jsonHeaderWith3Fields = "{\"HEADER\":[\"{\\\"Status\\\":\\\"400\\\"}\",\"{\\\"Content-Type\\\":\\\"application/json\\\"}\",\"{\\\"Content-Length\\\":\\\"1024\\\"}\"]}";
 
 	@Test
 	public void testBodyValidationWithEntity() {
@@ -31,7 +35,7 @@ public class TestValidationsBuildTest {
 		try {
 			TestValidationsBuilder builder = new TestValidationsBuilder();
 			builder.buildHeaderStatus200AndEntityBody(testEntity);
-			org.junit.Assert.assertTrue(builder.getJSONRepresentation().equals(jsonHeader200WithBody));
+			assertTrue(builder.getJSONRepresentation().equals(jsonHeader200WithBody));
 		} catch (Exception e) {
 			e.printStackTrace();
 			org.junit.Assert.fail();
@@ -45,7 +49,7 @@ public class TestValidationsBuildTest {
 			builder.addHeaderParameter(HttpHeaderFields.STATUS, "400");
 			builder.addHeaderParameter(HttpHeaderFields.CONTENT_TYPE, "application/json");
 			builder.addHeaderParameter(HttpHeaderFields.CONTENT_LENGTH, "1024");
-			System.out.println(builder.getJSONRepresentation());
+			assertEquals(jsonHeaderWith3Fields, builder.getJSONRepresentation());
 		} catch (Exception e) {
 			e.printStackTrace();
 			org.junit.Assert.fail();
