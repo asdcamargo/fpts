@@ -1,10 +1,12 @@
 package com.microservicestest.model.validation.core;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.microservicestest.model.validation.interfaces.IKeyValueValidationProcessor;
 import com.microservicetest.util.ResourceController;
 import com.microservicetest.util.ResourceType;
@@ -16,10 +18,10 @@ public abstract class ValidationProcessorAbstract implements IKeyValueValidation
 	 */
 	protected Map<String, String> valuesMap = new HashMap<String, String>();
 
-	public String getJSONForValidation() throws JsonProcessingException {
-		ObjectMapper mapper = ResourceController.getResource(ResourceType.OBJECT_MAPPER);
-		return mapper.writeValueAsString(valuesMap);
-	}
+	public abstract JsonNode getJSONForValidation() throws IOException;
+
+	protected ObjectMapper mapper = ResourceController.getResource(ResourceType.OBJECT_MAPPER);
+	protected ObjectNode node = mapper.createObjectNode();
 
 	@Override
 	public void putContent(String field, String data) {

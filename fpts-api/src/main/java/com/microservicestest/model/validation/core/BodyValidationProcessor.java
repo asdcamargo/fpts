@@ -7,6 +7,7 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.microservicetest.util.JSONConverter;
 import com.microservicetest.util.ResourceController;
 import com.microservicetest.util.ResourceType;
@@ -36,6 +37,12 @@ class BodyValidationProcessor extends ValidationProcessorAbstract {
 		ObjectMapper om = ResourceController.getResource(ResourceType.OBJECT_MAPPER);
 		Map<String, String> fieldMap = om.readValue(JSONConverter.getJSONAsString(entity), Map.class);
 		super.setContentMap(fieldMap);
+	}
+
+	@Override
+	public ObjectNode getJSONForValidation() throws IOException {
+		node = (ObjectNode) mapper.readTree(mapper.writeValueAsString(valuesMap));
+		return node;
 	}
 
 }
