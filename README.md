@@ -6,6 +6,8 @@ Knowing that the test task is one of the main challenges in a Microservices appl
 
 ## Application
 
+* **JDK:** This project uses JDK 8
+
 * **Web Framework:** [Spring Web MVC](https://github.com/spring-projects/spring-framework.git) v4.1.6
 
 * **JSON library:** [Jackson](https://github.com/FasterXML/jackson.git) v2.5.4 
