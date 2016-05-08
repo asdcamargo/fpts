@@ -23,7 +23,6 @@ public class TestValidationsBuildTest {
 		try {
 			TestValidationsBuilder builder = new TestValidationsBuilder();
 			builder.buildBodyValidationFromEntity(testEntity);
-			System.out.println(builder.getJSONRepresentation());
 			org.junit.Assert.assertTrue(builder.getJSONRepresentation().equals(jsonEntity));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -36,8 +35,6 @@ public class TestValidationsBuildTest {
 		try {
 			TestValidationsBuilder builder = new TestValidationsBuilder();
 			builder.buildHeaderStatus200AndEntityBody(testEntity);
-			System.out.println(builder.getJSONRepresentation());
-			System.out.println(jsonHeader200WithBody);
 			assertTrue(builder.getJSONRepresentation().equals(jsonHeader200WithBody));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,8 +49,6 @@ public class TestValidationsBuildTest {
 			builder.addHeaderParameter(HttpHeaderFields.STATUS, "400");
 			builder.addHeaderParameter(HttpHeaderFields.CONTENT_TYPE, "application/json");
 			builder.addHeaderParameter(HttpHeaderFields.CONTENT_LENGTH, "1024");
-			System.out.println(builder.getJSONRepresentation());
-			System.out.println(jsonHeaderWith3Fields);
 			assertEquals(jsonHeaderWith3Fields, builder.getJSONRepresentation());
 		} catch (Exception e) {
 			e.printStackTrace();
