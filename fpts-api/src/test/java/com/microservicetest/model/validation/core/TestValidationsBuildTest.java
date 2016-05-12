@@ -17,6 +17,8 @@ public class TestValidationsBuildTest {
 			+ "\"BODY\":{\"field1\":\"field1\",\"field\":true,\"field2\":\"field2\"}}";
 	EntityForTest testEntity = new EntityForTest("field1", "field2", true);
 	static String jsonHeaderWith3Fields = "{\"HEADER\":[{\"Status\":\"400\"},{\"Content-Length\":\"1024\"},{\"Content-Type\":\"application/json\"}]}";
+	static String jsonHeaderWith3FieldsAndBody = "{\"HEADER\":[{\"Status\":\"400\"},{\"Content-Length\":\"1024\"},{\"Content-Type\":\"application/json\"}],"
+			+ "\"BODY\":{\"field1\":\"field1\",\"field\":true,\"field2\":\"field2\"}}";;
 
 	@Test
 	public void testBodyValidationWithEntity() {
@@ -50,6 +52,21 @@ public class TestValidationsBuildTest {
 			builder.addHeaderParameter(HttpHeaderFields.CONTENT_TYPE, "application/json");
 			builder.addHeaderParameter(HttpHeaderFields.CONTENT_LENGTH, "1024");
 			assertEquals(jsonHeaderWith3Fields, builder.getJSONRepresentation());
+		} catch (Exception e) {
+			e.printStackTrace();
+			org.junit.Assert.fail();
+		}
+	}
+
+	@Test
+	public void testHeaderWithMultipleFieldsAndBody() {
+		try {
+			TestValidationsBuilder builder = new TestValidationsBuilder();
+			builder.addHeaderParameter(HttpHeaderFields.STATUS, "400");
+			builder.addHeaderParameter(HttpHeaderFields.CONTENT_TYPE, "application/json");
+			builder.addHeaderParameter(HttpHeaderFields.CONTENT_LENGTH, "1024");
+			builder.buildBodyValidationFromEntity(testEntity);
+			assertEquals(jsonHeaderWith3FieldsAndBody, builder.getJSONRepresentation());
 		} catch (Exception e) {
 			e.printStackTrace();
 			org.junit.Assert.fail();
