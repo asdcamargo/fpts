@@ -62,10 +62,10 @@ public class TestValidationsBuildTest {
 	public void testHeaderWithMultipleFieldsAndBody() {
 		try {
 			TestValidationsBuilder builder = new TestValidationsBuilder();
-			builder.addHeaderParameter(HttpHeaderFields.STATUS, "400");
-			builder.addHeaderParameter(HttpHeaderFields.CONTENT_TYPE, "application/json");
-			builder.addHeaderParameter(HttpHeaderFields.CONTENT_LENGTH, "1024");
-			builder.buildBodyValidationFromEntity(testEntity);
+			builder.addHeaderParameter(HttpHeaderFields.STATUS, "400")
+					.addHeaderParameter(HttpHeaderFields.CONTENT_TYPE, "application/json")
+					.addHeaderParameter(HttpHeaderFields.CONTENT_LENGTH, "1024")
+					.buildBodyValidationFromEntity(testEntity);
 			assertEquals(jsonHeaderWith3FieldsAndBody, builder.getJSONRepresentation());
 		} catch (Exception e) {
 			e.printStackTrace();
