@@ -1,4 +1,4 @@
-package com.microservicetest.util;
+package com.microservicestest.enums;
 
 /**
  * This enum have the fields that will be included in the response for the test

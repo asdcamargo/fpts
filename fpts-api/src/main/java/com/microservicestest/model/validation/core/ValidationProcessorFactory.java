@@ -1,7 +1,7 @@
 package com.microservicestest.model.validation.core;
 
+import com.microservicestest.enums.ValidationType;
 import com.microservicestest.model.validation.interfaces.IKeyValueValidationProcessor;
-import com.microservicetest.util.ValidationType;
 
 /**
  * Factory to instantiate ValidationProcessors based on {@link ValidationType}

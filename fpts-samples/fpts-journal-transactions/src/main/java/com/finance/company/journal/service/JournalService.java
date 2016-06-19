@@ -21,10 +21,10 @@ import com.finance.company.journal.bean.AccountDetails;
 import com.finance.company.journal.bean.FinancialTransaction;
 import com.finance.company.journal.repository.IJournalRepository;
 import com.microservicestest.annotation.PerformanceTest;
+import com.microservicestest.enums.HttpMethodEnum;
 import com.microservicestest.model.validation.core.TestValidationsBuilder;
 import com.microservicetest.model.GetTestParameter;
 import com.microservicetest.model.TestSpec;
-import com.microservicetest.util.HttpMethodEnum;
 
 @RestController
 public class JournalService extends RESTService {
@@ -71,7 +71,7 @@ public class JournalService extends RESTService {
 		this.journalRepository.delete(id);
 	}
 
-	@PerformanceTest(path = "/rest/finance/transactions", httpMethod = HttpMethodEnum.POST, description = "Save a new financial transaction")
+	@PerformanceTest(path = "/rest/finance", httpMethod = HttpMethodEnum.POST, description = "Save a new financial transaction")
 	public TestSpec<FinancialTransaction> getTestSpecForSave() throws IOException {
 		FinancialTransaction testObj = new FinancialTransaction("000023989", "766", "10", "2015");
 		AccountDetails accDetails = AccountDetails.build("0083289", 1000d, 1000d);

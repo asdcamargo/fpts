@@ -9,10 +9,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.microservicetest.util.HttpHeaderFields;
+import com.microservicestest.enums.HttpHeaderFields;
+import com.microservicestest.enums.ResourceType;
+import com.microservicestest.enums.ValidationType;
 import com.microservicetest.util.ResourceController;
-import com.microservicetest.util.ResourceType;
-import com.microservicetest.util.ValidationType;
 
 public class TestValidationsBuilder {
 

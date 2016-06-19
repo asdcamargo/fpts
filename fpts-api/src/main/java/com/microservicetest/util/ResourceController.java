@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.microservicestest.enums.ResourceType;
 
 /**
  * Util class that holds shared resources in a centralized way.<br>

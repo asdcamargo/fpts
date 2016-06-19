@@ -8,11 +8,11 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.microservicestest.enums.HttpMethodEnum;
+import com.microservicestest.enums.ResourceType;
+import com.microservicestest.enums.SpecResponseFields;
 import com.microservicestest.model.validation.core.TestValidationsBuilder;
-import com.microservicetest.util.HttpMethodEnum;
 import com.microservicetest.util.ResourceController;
-import com.microservicetest.util.ResourceType;
-import com.microservicetest.util.SpecResponseFields;
 
 /**
  * This class models the response for the OPTIONS request.<br>

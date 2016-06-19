@@ -24,8 +24,8 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import com.microservicestest.annotation.PerformanceTest;
+import com.microservicestest.enums.HttpMethodEnum;
 import com.microservicetest.model.TestSpec;
-import com.microservicetest.util.HttpMethodEnum;
 import com.microservicetest.util.JSONConverter;
 
 /**

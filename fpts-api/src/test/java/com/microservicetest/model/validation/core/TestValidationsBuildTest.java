@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 import org.junit.Test;
 
+import com.microservicestest.enums.HttpHeaderFields;
 import com.microservicestest.model.validation.core.TestValidationsBuilder;
-import com.microservicetest.util.HttpHeaderFields;
 
 public class TestValidationsBuildTest {
 

@@ -1,4 +1,4 @@
-package com.microservicetest.util;
+package com.microservicestest.enums;
 
 public enum HttpHeaderFields {
 	CONTENT_ENCODING("Content-Encoding"), ALLOW("Allow"), STATUS("Status"), CONTENT_LENGTH(

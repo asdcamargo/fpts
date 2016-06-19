@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.microservicetest.util.ValidationType;
+import com.microservicestest.enums.ValidationType;
 
 class HeaderValidationProcessor extends ValidationProcessorAbstract {
 

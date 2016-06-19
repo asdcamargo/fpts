@@ -5,8 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.microservicestest.enums.HttpMethodEnum;
 import com.microservicetest.model.TestSpec;
-import com.microservicetest.util.HttpMethodEnum;
 
 /**
  * This is the main annotation used to specify that a particular method will

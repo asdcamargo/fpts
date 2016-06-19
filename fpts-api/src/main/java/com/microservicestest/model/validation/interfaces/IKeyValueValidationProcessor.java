@@ -1,6 +1,6 @@
 package com.microservicestest.model.validation.interfaces;
 
-import com.microservicetest.util.ValidationType;
+import com.microservicestest.enums.ValidationType;
 
 /**
  * Basic interface that sets a class as a validator processor for key:value
