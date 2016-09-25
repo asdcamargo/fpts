@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +49,18 @@ public class JournalService extends RESTService {
 		return new ResponseEntity<FinancialTransaction>(journalHeader, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/transactions")
+	@RequestMapping(method = RequestMethod.GET, value = "/transactions/{name}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<FinancialTransaction> findByName(@RequestParam("name") String name) throws IOException {
+	public List<FinancialTransaction> findByName(@PathParam("name") String name) throws IOException {
 		logger.info("Searching JournalHeader by name: " + name);
 		FinancialTransaction journalHeader = this.journalRepository.findTransactionByName(name);
 		return Arrays.asList(journalHeader);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/transactions")
+	@ResponseStatus(HttpStatus.OK)
+	public List<FinancialTransaction> findByName() throws IOException {
+		return journalRepository.findAll();
 	}
 
 	@ResponseStatus(HttpStatus.OK)

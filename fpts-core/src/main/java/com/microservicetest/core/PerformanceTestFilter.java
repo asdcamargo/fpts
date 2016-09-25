@@ -140,6 +140,8 @@ public class PerformanceTestFilter implements Filter {
 
 		chain.doFilter(request, response);
 
+		logger.info("Before returning response!!");
+
 	}
 
 	public void destroy() {
